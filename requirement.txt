@@ -1,0 +1,6 @@
+spacy==2.0.18
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz#egg=en
+mosestokenizer==1.0.0
+mxnet==1.4.0
+sockeye==1.18.85
+subword-nmt==0.3.6
