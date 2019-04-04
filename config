@@ -1,0 +1,141 @@
+!ModelConfig
+config_data: !DataConfig
+  data_statistics: !DataStatistics
+    average_len_target_per_bucket:
+    - 7.145073548898002
+    - 13.99563686270617
+    - 23.694915053093826
+    - 33.6462227137744
+    - 43.49996592832752
+    - 53.29272556844158
+    - 63.10734061789328
+    - 72.93918370676286
+    - 82.74942670991013
+    - 91.22460162046973
+    buckets:
+    - !!python/tuple
+      - 10
+      - 10
+    - !!python/tuple
+      - 20
+      - 20
+    - !!python/tuple
+      - 30
+      - 30
+    - !!python/tuple
+      - 40
+      - 40
+    - !!python/tuple
+      - 50
+      - 50
+    - !!python/tuple
+      - 60
+      - 60
+    - !!python/tuple
+      - 70
+      - 70
+    - !!python/tuple
+      - 80
+      - 80
+    - !!python/tuple
+      - 90
+      - 90
+    - !!python/tuple
+      - 100
+      - 100
+    length_ratio_mean: 1.0442173528795242
+    length_ratio_std: 0.22483564504779635
+    max_observed_len_source: 100
+    max_observed_len_target: 100
+    num_discarded: 19307
+    num_sents: 141362580
+    num_sents_per_bucket:
+    - 33253319
+    - 53201168
+    - 25616295
+    - 13164610
+    - 7278774
+    - 4097681
+    - 2341574
+    - 1372938
+    - 757906
+    - 278315
+    num_tokens_source: 2797831244
+    num_tokens_target: 2903116929
+    num_unks_source: 0
+    num_unks_target: 0
+    size_vocab_source: 19581
+    size_vocab_target: 19581
+  max_seq_len_source: 100
+  max_seq_len_target: 100
+  num_source_factors: 3
+  source_with_eos: true
+config_decoder: !TransformerConfig
+  act_type: relu
+  attention_heads: 8
+  conv_config: null
+  dropout_act: 0.1
+  dropout_attention: 0.1
+  dropout_prepost: 0.1
+  dtype: float32
+  feed_forward_num_hidden: 2048
+  lhuc: false
+  max_seq_len_source: 100
+  max_seq_len_target: 100
+  model_size: 512
+  num_layers: 6
+  positional_embedding_type: fixed
+  postprocess_sequence: dr
+  preprocess_sequence: n
+  use_lhuc: false
+config_embed_source: !EmbeddingConfig
+  dropout: 0.0
+  dtype: float32
+  factor_configs:
+  - !FactorConfig
+    _frozen: false
+    num_embed: 4
+    vocab_size: 8
+  - !FactorConfig
+    _frozen: false
+    num_embed: 4
+    vocab_size: 6
+  num_embed: 512
+  num_factors: 3
+  vocab_size: 19581
+config_embed_target: !EmbeddingConfig
+  dropout: 0.0
+  dtype: float32
+  factor_configs: null
+  num_embed: 512
+  num_factors: 1
+  vocab_size: 19581
+config_encoder: !TransformerConfig
+  act_type: relu
+  attention_heads: 8
+  conv_config: null
+  dropout_act: 0.1
+  dropout_attention: 0.1
+  dropout_prepost: 0.1
+  dtype: float32
+  feed_forward_num_hidden: 2048
+  lhuc: false
+  max_seq_len_source: 100
+  max_seq_len_target: 100
+  model_size: 520
+  num_layers: 6
+  positional_embedding_type: fixed
+  postprocess_sequence: dr
+  preprocess_sequence: n
+  use_lhuc: false
+config_loss: !LossConfig
+  label_smoothing: 0.1
+  name: cross-entropy
+  normalization_type: valid
+  vocab_size: 19581
+lhuc: false
+vocab_source_size: 19581
+vocab_target_size: 19581
+weight_normalization: false
+weight_tying: true
+weight_tying_type: src_trg_softmax
