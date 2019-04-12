@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sed -r 's/@@( |$)//g' \
-| \
-python detok.py
+MODELDIR=$(dirname $0)
+
+python ${MODELDIR}/detok.py

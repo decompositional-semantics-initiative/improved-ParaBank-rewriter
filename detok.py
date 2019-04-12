@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import json
 import string
 import sys
 from mosestokenizer import MosesDetokenizer
@@ -26,9 +27,26 @@ def fixTokenization(candidate):
     candidate = candidate.replace(' - ', '-')
     return candidate
 
+def debpe(s):
+    if s.endswith('@@'):
+        s = s[:-2]
+    return s.replace('@@ ', '')
+
 if __name__ == '__main__':
     for line in sys.stdin:
-        splitted = line.strip('\n')
-        splitted = fixTokenization(detokenizer(splitted.split()))
-        print(splitted)
+        # Try to parse as JSON if the line starts with a {.
+        # If it fails, drop down to treating it as raw text
+        if line.startswith('{'):
+            try:
+                jobj = json.loads(line)
+                for score, translation in zip(jobj['scores'], jobj['translations']):
+                    print('{:.3f}'.format(score), fixTokenization(detokenizer(debpe(translation).split())), sep='\t', flush=True)
+                continue
+            except Exception:
+                pass
+
+        # Run if JSON parsing not relevant or fails
+        line = line.rstrip()
+        print(fixTokenization(detokenizer(debpe(line).split())), flush=True)
+
    
