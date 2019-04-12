@@ -39,10 +39,20 @@ if __name__ == '__main__':
         if line.startswith('{'):
             try:
                 jobj = json.loads(line)
-                for score, translation in zip(jobj['scores'], jobj['translations']):
-                    print('{:.3f}'.format(score), fixTokenization(detokenizer(debpe(translation).split())), sep='\t', flush=True)
+                if 'translations' in jobj:
+                    scores = jobj['scores']
+                    translations = jobj['translations']
+                else:
+                    scores = [jobj['score']]
+                    translations = [jobj['translation']]
+
+                for score, translation in zip(scores, translations):
+                    # print('{:.3f}'.format(score), fixTokenization(detokenizer(debpe(translation).split())), sep='\t', flush=True)
+                    print(fixTokenization(detokenizer(debpe(translation).split())), flush=True)
+
                 continue
             except Exception:
+                print("Exception encountered!")
                 pass
 
         # Run if JSON parsing not relevant or fails
